@@ -55,8 +55,16 @@ int main()
   //Launch the system task that will initialize and start everything
   systemLaunch();
 
+	// Matt test
+	GPIO_InitTypeDef ledTest;
+	ledTest.GPIO_Pin = LED_GPIO_GREEN;
+	ledTest.GPIO_Mode = GPIO_Mode_Out_PP;
+	ledTest.GPIO_Speed = GPIO_Speed_10MHz;
+
   //Start the FreeRTOS scheduler
   vTaskStartScheduler();
+
+
 
   //Should never reach this point!
   while(1);
