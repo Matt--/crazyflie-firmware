@@ -141,6 +141,8 @@ void motorsInit()
 bool motorsTest(void)
 {
 #ifndef BRUSHLESS_MOTORCONTROLLER
+  
+	ledSet(LED_RED, 1);
   int i;
 
   for (i = 0; i < sizeof(MOTORS) / sizeof(*MOTORS); i++)
@@ -196,6 +198,7 @@ int motorsGetRatio(int id)
 // FreeRTOS Task to test the Motors driver with a rampup of each motor alone.
 void motorsTestTask(void* params)
 {
+	ledSet(LED_GREEN, 1);
   int step=0;
   float rampup = 0.01;
 
@@ -203,11 +206,30 @@ void motorsTestTask(void* params)
   motorsSetRatio(MOTOR_M3, 1*(1<<16) * 0.0);
   motorsSetRatio(MOTOR_M2, 1*(1<<16) * 0.0);
   motorsSetRatio(MOTOR_M1, 1*(1<<16) * 0.0);
-  vTaskDelay(M2T(1000));
+
+	ledSet(LED_RED, 1);
+
+  //vTaskDelay(M2T(1000));
+  int k = 0;
+  int on = 1;
+  int max = 1000000;
+  while(k++ < max){
+    if(k%500000 == 0){
+	    ledSet(LED_RED, on);
+      on = on == 0 ? 1 : 0;
+    }
+  }
 
   while(1)
   {
-    vTaskDelay(M2T(100));
+    //vTaskDelay(M2T(100));
+		k = 0;
+    while(k++ <= 50000){
+      if(k%50000 == 0){
+	      ledSet(LED_RED, on);
+        on = on == 0 ? 1 : 0;
+      }
+    }
 
     motorsSetRatio(MOTOR_M4, 1*(1<<16) * rampup);
     motorsSetRatio(MOTOR_M3, 1*(1<<16) * rampup);
@@ -226,6 +248,7 @@ void motorsTestTask(void* params)
 // FreeRTOS Task to test the Motors driver
 void motorsTestTask(void* params)
 {
+	ledSet(LED_RED, 1);
   static const int sequence[] = {0.1*(1<<16), 0.15*(1<<16), 0.2*(1<<16), 0.25*(1<<16)};
   int step=0;
 

@@ -55,6 +55,7 @@ VPATH += init hal/src modules/src utils/src drivers/src
 ############### Source files configuration ################
 
 # Init
+#PROJ_OBJ = whiley_main_motors.o
 PROJ_OBJ = main.o
 
 # Drivers

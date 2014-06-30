@@ -43,9 +43,10 @@ stabilizer.o: modules/src/stabilizer.c config/stm32f10x_conf.h \
  modules/interface/controller.h modules/interface/commander.h \
  modules/interface/sensfusion6.h hal/interface/imu.h \
  utils/interface/filter.h hal/interface/imu_types.h \
- drivers/interface/motors.h modules/interface/log.h \
- modules/interface/pid.h hal/interface/ledseq.h drivers/interface/led.h \
- modules/interface/param.h drivers/interface/ms5611.h
+ drivers/interface/motors.h drivers/interface/led.h \
+ modules/interface/log.h modules/interface/pid.h hal/interface/ledseq.h \
+ drivers/interface/led.h modules/interface/param.h \
+ drivers/interface/ms5611.h
 
 config/stm32f10x_conf.h:
 
@@ -160,6 +161,8 @@ utils/interface/filter.h:
 hal/interface/imu_types.h:
 
 drivers/interface/motors.h:
+
+drivers/interface/led.h:
 
 modules/interface/log.h:
 

@@ -35,7 +35,8 @@ pid.o: modules/src/pid.c config/stm32f10x_conf.h \
  lib/FreeRTOS/include/list.h modules/interface/pid.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/lib/gcc/arm-none-eabi/4.8.3/include/stdbool.h \
  drivers/interface/led.h drivers/interface/motors.h config/config.h \
- drivers/interface/nrf24l01.h drivers/interface/nRF24L01reg.h
+ drivers/interface/nrf24l01.h drivers/interface/nRF24L01reg.h \
+ drivers/interface/led.h
 
 config/stm32f10x_conf.h:
 
@@ -128,3 +129,5 @@ config/config.h:
 drivers/interface/nrf24l01.h:
 
 drivers/interface/nRF24L01reg.h:
+
+drivers/interface/led.h:

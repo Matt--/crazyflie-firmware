@@ -36,9 +36,9 @@ pm.o: hal/src/pm.c config/stm32f10x_conf.h \
  lib/FreeRTOS/portable/GCC/ARM_CM3/portmacro.h \
  lib/FreeRTOS/include/mpu_wrappers.h lib/FreeRTOS/include/task.h \
  lib/FreeRTOS/include/list.h lib/FreeRTOS/include/semphr.h \
- lib/FreeRTOS/include/queue.h modules/interface/system.h \
- hal/interface/pm.h drivers/interface/adc.h config/config.h \
+ lib/FreeRTOS/include/queue.h config/config.h \
  drivers/interface/nrf24l01.h drivers/interface/nRF24L01reg.h \
+ modules/interface/system.h hal/interface/pm.h drivers/interface/adc.h \
  drivers/interface/led.h modules/interface/log.h hal/interface/ledseq.h \
  modules/interface/commander.h hal/interface/radiolink.h \
  modules/interface/crtp.h
@@ -131,17 +131,17 @@ lib/FreeRTOS/include/semphr.h:
 
 lib/FreeRTOS/include/queue.h:
 
-modules/interface/system.h:
-
-hal/interface/pm.h:
-
-drivers/interface/adc.h:
-
 config/config.h:
 
 drivers/interface/nrf24l01.h:
 
 drivers/interface/nRF24L01reg.h:
+
+modules/interface/system.h:
+
+hal/interface/pm.h:
+
+drivers/interface/adc.h:
 
 drivers/interface/led.h:
 

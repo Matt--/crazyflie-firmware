@@ -47,6 +47,25 @@ static void prvClockInit(void);
 
 int main() 
 {
+  //===============================
+	// Matt test
+/*	GPIO_InitTypeDef ledTest;
+	ledTest.GPIO_Pin = LED_GPIO_RED | LED_GPIO_GREEN;
+	ledTest.GPIO_Mode = GPIO_Mode_Out_PP;
+	ledTest.GPIO_Speed = GPIO_Speed_10MHz;
+
+  GPIO_Init(GPIOB, &ledTest);
+    
+  GPIO_ResetBits(GPIOB, LED_RED);
+  GPIO_ResetBits(GPIOB, LED_GREEN);
+
+  int count = 0;
+  while(count < 50000){
+    count ++;
+  };
+*/  // end Matt test
+  //===============================
+
   //Low level init: Clock and Interrupt controller
   prvClockInit();
   nvicInit();
@@ -55,11 +74,6 @@ int main()
   //Launch the system task that will initialize and start everything
   systemLaunch();
 
-	// Matt test
-	GPIO_InitTypeDef ledTest;
-	ledTest.GPIO_Pin = LED_GPIO_GREEN;
-	ledTest.GPIO_Mode = GPIO_Mode_Out_PP;
-	ledTest.GPIO_Speed = GPIO_Speed_10MHz;
 
   //Start the FreeRTOS scheduler
   vTaskStartScheduler();

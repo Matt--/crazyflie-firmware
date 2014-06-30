@@ -33,9 +33,12 @@
 #ifndef __MOTORS_H__
 #define __MOTORS_H__
 
+#define MOTOR_RAMPUP_TEST
+
 #include <stdint.h>
 #include <stdbool.h>
 #include "config.h"
+#include "led.h"
 
 /******** Defines ********/
 

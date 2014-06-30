@@ -22,7 +22,8 @@ led.o: drivers/src/led.c config/stm32f10x_conf.h \
  lib//STM32F10x_StdPeriph_Driver/inc/misc.h drivers/interface/led.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/lib/gcc/arm-none-eabi/4.8.3/include/stdbool.h \
  drivers/interface/motors.h config/config.h drivers/interface/nrf24l01.h \
- drivers/interface/nRF24L01reg.h lib/FreeRTOS/include/FreeRTOS.h \
+ drivers/interface/nRF24L01reg.h drivers/interface/led.h \
+ lib/FreeRTOS/include/FreeRTOS.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/lib/gcc/arm-none-eabi/4.8.3/include/stddef.h \
  lib/FreeRTOS/include/projdefs.h config/FreeRTOSConfig.h \
  lib/FreeRTOS/include/portable.h \
@@ -87,6 +88,8 @@ config/config.h:
 drivers/interface/nrf24l01.h:
 
 drivers/interface/nRF24L01reg.h:
+
+drivers/interface/led.h:
 
 lib/FreeRTOS/include/FreeRTOS.h:
 
