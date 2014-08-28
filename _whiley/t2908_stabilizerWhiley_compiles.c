@@ -184,7 +184,7 @@ void x1x_stabilizerTask (void){
   label19: ;
   int a54 = 2;
   cf_lib_vTaskDelayUntil ( a52, a54 );
-  imu9Read ( &a4, &a9, &a14 );
+  imu9Read ( &a4, &a9, &a14 );                 // addresses
   //  real * a58 = cf_lib_getGyro (  );
   //  a4 = a58;
   //  real * a59 = cf_lib_getAcc (  );
@@ -229,7 +229,7 @@ void x1x_stabilizerTask (void){
   int a100 = 2;
   real a101 = a9.z;
   sensfusion6UpdateQ ( a86, a89, a92, a95, a98, a101, a83 );
-  sensfusion6GetEulerRPY ( &a16, &a18, &a20 );
+  sensfusion6GetEulerRPY ( &a16, &a18, &a20 );                 // addresses
   //  real a106 = cf_lib_getEulerRollActual (  );
   //  a16 = a106;
   //  real a107 = cf_lib_getEulerPitchActual (  );

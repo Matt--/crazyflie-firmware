@@ -138,7 +138,7 @@ static Any cf_lib_getEulerPitchDesired(){ return Real(eulerPitchDesired);}
 //static RPYType pitchType;
 //static RPYType yawType;
 /* need to accept a Str() type and return a Str() type */
-RPYType rollType;
+/*RPYType rollType;
 RPYType pitchType;
 RPYType yawType;
 static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* _yawType){
@@ -153,8 +153,7 @@ static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* 
 char * cf_lib_getRollType() { char *a = rollType == 0 ? "ANGLE" : rollType == 2 ? "RATE" : ""; return a;}
 char * cf_lib_getPitchType(){ char *a = pitchType == 0 ? "ANGLE" : pitchType == 2 ? "RATE" : ""; return a;}
 char * cf_lib_getYawType()  { char *a = yawType == 0 ? "ANGLE" : yawType == 2 ? "RATE" : ""; return a;}
-
-
+*/
 /** controllerCorrectAttitudePID **/
 
 /*static float rollRateDesired = 0;
