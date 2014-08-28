@@ -147,6 +147,7 @@ bool motorsTest(void)
   {
     motorsSetRatio(MOTORS[i], MOTORS_TEST_RATIO);
     vTaskDelay(M2T(MOTORS_TEST_ON_TIME_MS));
+
     motorsSetRatio(MOTORS[i], 0);
     vTaskDelay(M2T(MOTORS_TEST_DELAY_TIME_MS));
   }

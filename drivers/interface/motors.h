@@ -36,6 +36,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "config.h"
+#include "led.h"
 
 /******** Defines ********/
 

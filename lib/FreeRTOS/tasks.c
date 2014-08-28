@@ -792,12 +792,16 @@ tskTCB * pxNewTCB;
 
 	void vTaskDelay( portTickType xTicksToDelay )
 	{
+
+  ledSetRed(0);
+
 	portTickType xTimeToWake;
 	signed portBASE_TYPE xAlreadyYielded = pdFALSE;
 
 		/* A delay time of zero just forces a reschedule. */
 		if( xTicksToDelay > ( portTickType ) 0U )
 		{
+
 			vTaskSuspendAll();
 			{
 				traceTASK_DELAY();
@@ -826,6 +830,7 @@ tskTCB * pxNewTCB;
 				}
 				prvAddCurrentTaskToDelayedList( xTimeToWake );
 			}
+
 			xAlreadyYielded = xTaskResumeAll();
 		}
 
@@ -1417,6 +1422,7 @@ signed portBASE_TYPE xAlreadyYielded = pdFALSE;
 		}
 	}
 	taskEXIT_CRITICAL();
+//  if(xAlreadyYielded == 1) ledSetRed(1);
 
 	return xAlreadyYielded;
 }

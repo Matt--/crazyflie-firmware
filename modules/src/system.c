@@ -178,13 +178,19 @@ void systemStart()
 
 void systemWaitStart(void)
 {
+
   //This permits to guarantee that the system task is initialized before other
   //tasks waits for the start event.
   while(!isInit)
     vTaskDelay(2);
 
+
+
+  
   xSemaphoreTake(canStartMutex, portMAX_DELAY);
+
   xSemaphoreGive(canStartMutex);
+
 }
 
 void systemSetCanFly(bool val)

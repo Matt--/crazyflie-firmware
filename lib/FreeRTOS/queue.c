@@ -1015,6 +1015,7 @@ xQUEUE *pxQueue;
 
 signed portBASE_TYPE xQueueGenericReceive( xQueueHandle xQueue, void * const pvBuffer, portTickType xTicksToWait, portBASE_TYPE xJustPeeking )
 {
+
 signed portBASE_TYPE xEntryTimeSet = pdFALSE;
 xTimeOutType xTimeOut;
 signed char *pcOriginalReadPosition;
@@ -1027,6 +1028,7 @@ xQUEUE *pxQueue;
 	/* This function relaxes the coding standard somewhat to allow return
 	statements within the function itself.  This is done in the interest
 	of execution time efficiency. */
+
 
 	for( ;; )
 	{
@@ -1113,15 +1115,21 @@ xQUEUE *pxQueue;
 		}
 		taskEXIT_CRITICAL();
 
+
+
+
 		/* Interrupts and other tasks can send to and receive from the queue
 		now the critical section has been exited. */
 
 		vTaskSuspendAll();
 		prvLockQueue( pxQueue );
 
+
+
 		/* Update the timeout state to see if it has expired yet. */
 		if( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == pdFALSE )
 		{
+
 			if( prvIsQueueEmpty( pxQueue ) != pdFALSE )
 			{
 				traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue );
@@ -1144,6 +1152,7 @@ xQUEUE *pxQueue;
 				if( xTaskResumeAll() == pdFALSE )
 				{
 					portYIELD_WITHIN_API();
+
 				}
 			}
 			else

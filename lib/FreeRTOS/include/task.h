@@ -82,6 +82,7 @@
 
 #include "portable.h"
 #include "list.h"
+#include "led.h"
 
 #ifdef __cplusplus
 extern "C" {
