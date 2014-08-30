@@ -46,6 +46,10 @@ static bool isStabilizerInit(){
  * simple solution pattern to this interface; first call to update globals, then specify the getters for Whiley
  */
 
+static void cf_lib_LHS_Equals_Neg_RHS( float* yawRateDesired, float* eulerYawDesired){
+		*yawRateDesired = -(*eulerYawDesired);
+}
+
 /* =============================================
  * == FreeRTOS ==
  */
@@ -80,8 +84,8 @@ static void cf_lib_xTaskCreate(func stabilizerTask, char* stabilizerName, int de
    typedef void * xTaskHandle;
    typedef portBASE_TYPE (*pdTASK_HOOK_CODE)( void * );
 */
-/*static*/ int g_xTask;
-/*static*/ pdTASK_HOOK_CODE g_taskStabilizerIdNmr;
+static int g_xTask;
+static pdTASK_HOOK_CODE g_taskStabilizerIdNmr;
 static void cf_lib_vTaskSetApplicationTaskTag(int xTask, int taskStabilizerIdNmr){
   g_xTask = xTask;
   g_taskStabilizerIdNmr = (pdTASK_HOOK_CODE) taskStabilizerIdNmr;
@@ -98,11 +102,13 @@ static void cf_lib_vTaskSetApplicationTaskTag(int xTask, int taskStabilizerIdNmr
 //	typedef unsigned portLONG portTickType;
 //	#define portMAX_DELAY ( portTickType ) 0xffffffff
 //#endif
-/*static*/ portTickType lastWakeTime;
-static void cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
+static portTickType lastWakeTime;
+static int cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
   lastWakeTime = (portTickType) _lastWakeTime;
 
-  vTaskDelayUntil( &lastWakeTime, xTimeIncrement );
+  vTaskDelayUntil( &lastWakeTime, (unsigned int) xTimeIncrement );
+
+  return (int) lastWakeTime;
 }
 
 /* =====================================================
@@ -110,11 +116,13 @@ static void cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
  */
 
 /** commanderGetThrust **/
-/*static*/ uint16_t thrust;
-static int cf_lib_commanderGetThrust(int _thrust){
-  thrust = (uint16_t) _thrust;
+static uint16_t thrust;
+static void cf_lib_commanderGetThrust(int* _thrust){
+  thrust = (uint16_t) *_thrust;
+
   commanderGetThrust(&thrust);
-  return (int) thrust;
+  
+  *_thrust = (int) thrust;
 }
 
 /** commanderGetRPY **/
@@ -134,26 +142,38 @@ static Any cf_lib_getEulerPitchDesired(){ return Real(eulerPitchDesired);}
 //static float cf_lib_getEulerYawDesired()  { return eulerYawDesired;}
 
 /** commanderGetRPYType **/
-//static RPYType rollType;
-//static RPYType pitchType;
-//static RPYType yawType;
-/* need to accept a Str() type and return a Str() type */
-/*RPYType rollType;
+/* declared in FreeRTOS commander.h
+typedef enum
+{
+  RATE,
+  ANGLE
+} RPYType; */
+RPYType rollType;
 RPYType pitchType;
-RPYType yawType;
-static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* _yawType){
-  rollType  = strcmp(_rollType, "ANGLE") == 0 ? 0 :
-		        strcmp(_rollType, "RATE") == 0 ? 1 : 99;
-  pitchType = strcmp(_pitchType, "ANGLE") == 0 ? 0 :
-		        strcmp(_pitchType, "RATE") == 0 ? 1 : 99;
-  yawType   = strcmp(_yawType, "ANGLE") == 0 ? 0 :
-		        strcmp(_yawType, "RATE") == 0 ? 1 : 99;
-  commanderGetRPYType(&rollType, &pitchType, &yawType);
+int getRPYEnum(char* s){
+  if(strcmp(s, "RATE") == 0) return 0;
+  if(strcmp(s, "ANGLE") == 0) return 1;
+  return 99;
 }
-char * cf_lib_getRollType() { char *a = rollType == 0 ? "ANGLE" : rollType == 2 ? "RATE" : ""; return a;}
-char * cf_lib_getPitchType(){ char *a = pitchType == 0 ? "ANGLE" : pitchType == 2 ? "RATE" : ""; return a;}
-char * cf_lib_getYawType()  { char *a = yawType == 0 ? "ANGLE" : yawType == 2 ? "RATE" : ""; return a;}
-*/
+RPYType yawType;
+char* getRPYString(int x){
+  if(x == 0) return "RATE";
+  if(x == 1) return "ANGLE";
+  return "ERROR";
+}
+// needed to translate between Whiley string and Crazyflie C enums
+static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* _yawType){
+  rollType  = getRPYEnum(_rollType);
+  pitchType = getRPYEnum(_pitchType);
+  yawType   = getRPYEnum(_yawType);
+
+  commanderGetRPYType(&rollType, &pitchType, &yawType);
+
+  _rollType = getRPYString(rollType);
+  _pitchType = getRPYString(pitchType);
+  _yawType = getRPYString(yawType);
+}
+
 /** controllerCorrectAttitudePID **/
 
 /*static float rollRateDesired = 0;
@@ -181,19 +201,32 @@ static float cf_lib_getPitchRateDesired(){ return pitchRateDesired;}
 //static short actuatorRoll;
 //static short actuatorPitch;
 //static short actuatorYaw;
-/*short actuatorRoll;
-short actuatorPitch;
-short actuatorYaw;
-static void cf_lib_controllerGetActuatorOutput(int _actuatorRoll, int _actuatorPitch, int _actuatorYaw){
-  actuatorRoll  = (short) _actuatorRoll;
-  actuatorPitch = (short) _actuatorPitch;
-  actuatorYaw   = (short) _actuatorYaw;
+int16_t actuatorRoll;
+int16_t actuatorPitch;
+int16_t actuatorYaw;
+// needed to cast from Whiley unbounded ints to Crazyflie C shorts, alias int16_t
+static void cf_lib_controllerGetActuatorOutput(int* _actuatorRoll, int* _actuatorPitch, int* _actuatorYaw){
+  actuatorRoll  = (int16_t) *_actuatorRoll;
+  actuatorPitch = (int16_t) *_actuatorPitch;
+  actuatorYaw   = (int16_t) *_actuatorYaw;
+
   controllerGetActuatorOutput(&actuatorRoll, &actuatorPitch, &actuatorYaw);
+
+  *_actuatorRoll  = (int) actuatorRoll;
+  *_actuatorPitch = (int) actuatorPitch;
+  *_actuatorYaw   = (int) actuatorYaw;
 }
-static int cf_lib_getActuatorRoll() { return (int) actuatorRoll;}
-static int cf_lib_getActuatorPitch(){ return (int) actuatorPitch;}
-static int cf_lib_getActuatorYaw()  { return (int) actuatorYaw;}
-*/
+
+/* void controllerCorrectRatePID(
+       float rollRateActual, float pitchRateActual, float yawRateActual,
+       float rollRateDesired, float pitchRateDesired, float yawRateDesired); */
+static void cf_lib_controllerCorrectRatePID(
+		float gyro[], float* rollRateDesired, float* pitchRateDesired, float* yawRateDesired){
+	controllerCorrectRatePID(
+	       gyro[0], -(gyro[1]), gyro[2],
+	       *rollRateDesired, *pitchRateDesired, *yawRateDesired);
+}
+
 /* ========================================================
  * == i/o ==
  */
@@ -202,24 +235,34 @@ static int cf_lib_getActuatorYaw()  { return (int) actuatorYaw;}
 static Axis3f gyro; // Gyro axis data in degrees
 static Axis3f acc;  // Accelerometer axis data in mG 
 static Axis3f mag;  // Magnetometer axis data in testla
-static float gyroArray[3];
-static float accArray[3];
-static float magArray[3];
 // translater method 
+// needed to translate between Whiley arrays and  Crazyflie C structs
+void array_to_axis3f(float* array, Axis3f axis){
+  axis.x = array[0];
+  axis.y = array[1];
+  axis.z = array[2];
+}
 void axis3f_to_array(Axis3f axis, float* array){
 	array[0] = axis.x;
 	array[1] = axis.y;
 	array[2] = axis.z;
 }
 static void cf_lib_imu9Read(float* _gyro, float* _acc, float* _mag){
-  gyro.x = _gyro[0]; gyro.y = _gyro[1]; gyro.z = _gyro[2];
-  acc.x  = _acc[0];  acc.y  = _acc[1];  acc.z  = _acc[2];
-  mag.x  = _mag[0];  mag.y  = _mag[1];  mag.z  = _mag[2];
+  array_to_axis3f(_gyro, gyro);
+  array_to_axis3f(_acc,  acc);
+  array_to_axis3f(_mag,  mag);
+
   imu9Read(&gyro, &acc, &mag);
+
+	axis3f_to_array(gyro, _gyro);
+  axis3f_to_array( acc, _acc);
+  axis3f_to_array( mag, _mag);
 }
-static float* cf_lib_getGyro(){ axis3f_to_array(gyro, gyroArray); return gyroArray;}
-static float* cf_lib_getAcc() { axis3f_to_array( acc,  accArray); return  accArray;}
-static float* cf_lib_getMag() { axis3f_to_array( mag,  magArray); return  magArray;}
+
+/* void sensfusion6UpdateQ(float gx, float gy, float gz, float ax, float ay, float az, float dt); */
+static void cf_lib_sensfusion6UpdateQ(float gyro[], float acc[], float dt){
+	sensfusion6UpdateQ( gyro[0], gyro[1], gyro[2], acc[0], acc[1], acc[2], dt);
+}
 
 
 
@@ -237,6 +280,7 @@ static float cf_lib_getEulerRollActual() { return eulerRollActual;}
 static float cf_lib_getEulerPitchActual(){ return eulerPitchActual;}
 static float cf_lib_getEulerYawActual()  { return eulerYawActual;}
 */
+
 /* void motorsSetRatio(int id, uint16_t ratio); */
 static void cf_lib_motorsSetRatio(int motor, int power){
 	motorsSetRatio(motor, (uint16_t) power);
