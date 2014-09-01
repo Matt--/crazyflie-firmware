@@ -4965,6 +4965,12 @@ Discarded input sections
  .bss           0x00000000        0x0 bin/stabilizer.o
  .text.Str      0x00000000        0x6 bin/stabilizer.o
  .text.toStr    0x00000000       0x88 bin/stabilizer.o
+ .text.mattTest
+                0x00000000        0x8 bin/stabilizer.o
+ .text.ledOn    0x00000000       0x16 bin/stabilizer.o
+ .text.printLed
+                0x00000000       0x2a bin/stabilizer.o
+ .text.ledOff   0x00000000       0x16 bin/stabilizer.o
  .text.getRPYString
                 0x00000000       0x20 bin/stabilizer.o
  .text.array_to_axis3f
@@ -8375,7 +8381,7 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000     0x23e8
+.debug_aranges  0x00000000     0x2408
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x40 bin/list.o
@@ -8476,36 +8482,36 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_aranges
                 0x000020e8       0x40 bin/sensfusion6.o
  .debug_aranges
-                0x00002128       0x70 bin/stabilizer.o
+                0x00002128       0x90 bin/stabilizer.o
  .debug_aranges
-                0x00002198       0x80 bin/log.o
+                0x000021b8       0x80 bin/log.o
  .debug_aranges
-                0x00002218       0x38 bin/worker.o
+                0x00002238       0x38 bin/worker.o
  .debug_aranges
-                0x00002250       0x20 bin/filter.o
+                0x00002270       0x20 bin/filter.o
  .debug_aranges
-                0x00002270       0x28 bin/cpuid.o
+                0x00002290       0x28 bin/cpuid.o
  .debug_aranges
-                0x00002298       0x20 bin/cfassert.o
+                0x000022b8       0x20 bin/cfassert.o
  .debug_aranges
-                0x000022b8       0x40 bin/configblock.o
+                0x000022d8       0x40 bin/configblock.o
  .debug_aranges
-                0x000022f8       0x40 bin/eprintf.o
+                0x00002318       0x40 bin/eprintf.o
  .debug_aranges
-                0x00002338       0x38 bin/crc.o
+                0x00002358       0x38 bin/crc.o
  .debug_aranges
-                0x00002370       0x28 bin/fp16.o
+                0x00002390       0x28 bin/fp16.o
  .debug_aranges
-                0x00002398       0x18 bin/debug.o
+                0x000023b8       0x18 bin/debug.o
  .debug_aranges
-                0x000023b0       0x20 bin/abort.o
+                0x000023d0       0x20 bin/abort.o
  .debug_aranges
-                0x000023d0       0x18 bin/version.o
+                0x000023f0       0x18 bin/version.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x24928
+.debug_info     0x00000000    0x24ab4
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x288 bin/list.o
  .debug_info    0x00000288     0x1298 bin/tasks.o
@@ -8556,21 +8562,21 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_info    0x0001f778      0x597 bin/commander.o
  .debug_info    0x0001fd0f      0x973 bin/controller.o
  .debug_info    0x00020682      0x4d6 bin/sensfusion6.o
- .debug_info    0x00020b58     0x197a bin/stabilizer.o
- .debug_info    0x000224d2     0x1198 bin/log.o
- .debug_info    0x0002366a      0x23d bin/worker.o
- .debug_info    0x000238a7      0x10e bin/filter.o
- .debug_info    0x000239b5       0xa7 bin/cpuid.o
- .debug_info    0x00023a5c      0x191 bin/cfassert.o
- .debug_info    0x00023bed      0x231 bin/configblock.o
- .debug_info    0x00023e1e      0x4b9 bin/eprintf.o
- .debug_info    0x000242d7      0x289 bin/crc.o
- .debug_info    0x00024560      0x132 bin/fp16.o
- .debug_info    0x00024692       0x6f bin/debug.o
- .debug_info    0x00024701       0x88 bin/abort.o
- .debug_info    0x00024789      0x19f bin/version.o
+ .debug_info    0x00020b58     0x1b06 bin/stabilizer.o
+ .debug_info    0x0002265e     0x1198 bin/log.o
+ .debug_info    0x000237f6      0x23d bin/worker.o
+ .debug_info    0x00023a33      0x10e bin/filter.o
+ .debug_info    0x00023b41       0xa7 bin/cpuid.o
+ .debug_info    0x00023be8      0x191 bin/cfassert.o
+ .debug_info    0x00023d79      0x231 bin/configblock.o
+ .debug_info    0x00023faa      0x4b9 bin/eprintf.o
+ .debug_info    0x00024463      0x289 bin/crc.o
+ .debug_info    0x000246ec      0x132 bin/fp16.o
+ .debug_info    0x0002481e       0x6f bin/debug.o
+ .debug_info    0x0002488d       0x88 bin/abort.o
+ .debug_info    0x00024915      0x19f bin/version.o
 
-.debug_abbrev   0x00000000     0x81e7
+.debug_abbrev   0x00000000     0x8235
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0xdf bin/list.o
  .debug_abbrev  0x000000df      0x346 bin/tasks.o
@@ -8621,21 +8627,21 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_abbrev  0x000068cc      0x269 bin/commander.o
  .debug_abbrev  0x00006b35      0x1cf bin/controller.o
  .debug_abbrev  0x00006d04      0x237 bin/sensfusion6.o
- .debug_abbrev  0x00006f3b      0x451 bin/stabilizer.o
- .debug_abbrev  0x0000738c      0x4cb bin/log.o
- .debug_abbrev  0x00007857      0x150 bin/worker.o
- .debug_abbrev  0x000079a7       0xaa bin/filter.o
- .debug_abbrev  0x00007a51       0x4e bin/cpuid.o
- .debug_abbrev  0x00007a9f       0xf2 bin/cfassert.o
- .debug_abbrev  0x00007b91      0x125 bin/configblock.o
- .debug_abbrev  0x00007cb6      0x261 bin/eprintf.o
- .debug_abbrev  0x00007f17      0x119 bin/crc.o
- .debug_abbrev  0x00008030       0xac bin/fp16.o
- .debug_abbrev  0x000080dc       0x29 bin/debug.o
- .debug_abbrev  0x00008105       0x45 bin/abort.o
- .debug_abbrev  0x0000814a       0x9d bin/version.o
+ .debug_abbrev  0x00006f3b      0x49f bin/stabilizer.o
+ .debug_abbrev  0x000073da      0x4cb bin/log.o
+ .debug_abbrev  0x000078a5      0x150 bin/worker.o
+ .debug_abbrev  0x000079f5       0xaa bin/filter.o
+ .debug_abbrev  0x00007a9f       0x4e bin/cpuid.o
+ .debug_abbrev  0x00007aed       0xf2 bin/cfassert.o
+ .debug_abbrev  0x00007bdf      0x125 bin/configblock.o
+ .debug_abbrev  0x00007d04      0x261 bin/eprintf.o
+ .debug_abbrev  0x00007f65      0x119 bin/crc.o
+ .debug_abbrev  0x0000807e       0xac bin/fp16.o
+ .debug_abbrev  0x0000812a       0x29 bin/debug.o
+ .debug_abbrev  0x00008153       0x45 bin/abort.o
+ .debug_abbrev  0x00008198       0x9d bin/version.o
 
-.debug_line     0x00000000    0x18f0e
+.debug_line     0x00000000    0x18f63
  *(.debug_line)
  .debug_line    0x00000000      0x55d bin/list.o
  .debug_line    0x0000055d      0x9b7 bin/tasks.o
@@ -8686,21 +8692,21 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_line    0x00013a3d      0x5ec bin/commander.o
  .debug_line    0x00014029      0x622 bin/controller.o
  .debug_line    0x0001464b      0x5ac bin/sensfusion6.o
- .debug_line    0x00014bf7      0x92a bin/stabilizer.o
- .debug_line    0x00015521      0x943 bin/log.o
- .debug_line    0x00015e64      0x5ab bin/worker.o
- .debug_line    0x0001640f      0x3fe bin/filter.o
- .debug_line    0x0001680d      0x402 bin/cpuid.o
- .debug_line    0x00016c0f      0x488 bin/cfassert.o
- .debug_line    0x00017097      0x51d bin/configblock.o
- .debug_line    0x000175b4      0x4ee bin/eprintf.o
- .debug_line    0x00017aa2      0x489 bin/crc.o
- .debug_line    0x00017f2b      0x420 bin/fp16.o
- .debug_line    0x0001834b      0x3c7 bin/debug.o
- .debug_line    0x00018712      0x3d6 bin/abort.o
- .debug_line    0x00018ae8      0x426 bin/version.o
+ .debug_line    0x00014bf7      0x97f bin/stabilizer.o
+ .debug_line    0x00015576      0x943 bin/log.o
+ .debug_line    0x00015eb9      0x5ab bin/worker.o
+ .debug_line    0x00016464      0x3fe bin/filter.o
+ .debug_line    0x00016862      0x402 bin/cpuid.o
+ .debug_line    0x00016c64      0x488 bin/cfassert.o
+ .debug_line    0x000170ec      0x51d bin/configblock.o
+ .debug_line    0x00017609      0x4ee bin/eprintf.o
+ .debug_line    0x00017af7      0x489 bin/crc.o
+ .debug_line    0x00017f80      0x420 bin/fp16.o
+ .debug_line    0x000183a0      0x3c7 bin/debug.o
+ .debug_line    0x00018767      0x3d6 bin/abort.o
+ .debug_line    0x00018b3d      0x426 bin/version.o
 
-.debug_frame    0x00000000     0x5ea0
+.debug_frame    0x00000000     0x5efc
  *(.debug_frame)
  .debug_frame   0x00000000       0x68 bin/list.o
  .debug_frame   0x00000068      0x2a4 bin/tasks.o
@@ -8751,42 +8757,42 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_frame   0x000052a8       0xe8 bin/commander.o
  .debug_frame   0x00005390       0xa0 bin/controller.o
  .debug_frame   0x00005430       0xa8 bin/sensfusion6.o
- .debug_frame   0x000054d8      0x134 bin/stabilizer.o
- .debug_frame   0x0000560c      0x190 bin/log.o
- .debug_frame   0x0000579c       0x70 bin/worker.o
- .debug_frame   0x0000580c       0x20 bin/filter.o
- .debug_frame   0x0000582c       0x30 bin/cpuid.o
- .debug_frame   0x0000585c       0x2c bin/cfassert.o
- .debug_frame   0x00005888       0x60 bin/configblock.o
- .debug_frame   0x000058e8       0xa8 bin/eprintf.o
- .debug_frame   0x00005990       0x70 bin/crc.o
- .debug_frame   0x00005a00       0x30 bin/fp16.o
- .debug_frame   0x00005a30       0x20 bin/abort.o
- .debug_frame   0x00005a50       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_cos.o)
- .debug_frame   0x00005a80       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_sin.o)
- .debug_frame   0x00005ab0       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_asin.o)
- .debug_frame   0x00005ae4       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_atan2.o)
- .debug_frame   0x00005b04       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_pow.o)
- .debug_frame   0x00005b3c       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_asin.o)
- .debug_frame   0x00005b74       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_atan2.o)
- .debug_frame   0x00005bac       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_pow.o)
- .debug_frame   0x00005be4       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_rem_pio2.o)
- .debug_frame   0x00005c1c       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_sqrt.o)
- .debug_frame   0x00005c50       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_cos.o)
- .debug_frame   0x00005c88       0x3c /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_rem_pio2.o)
- .debug_frame   0x00005cc4       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_sin.o)
- .debug_frame   0x00005cfc       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_atan.o)
- .debug_frame   0x00005d34       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_fabs.o)
- .debug_frame   0x00005d54       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_finite.o)
- .debug_frame   0x00005d74       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_floor.o)
- .debug_frame   0x00005dac       0x28 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_fpclassify.o)
- .debug_frame   0x00005dd4       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_matherr.o)
- .debug_frame   0x00005df4       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_nan.o)
- .debug_frame   0x00005e14       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_rint.o)
- .debug_frame   0x00005e48       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_scalbn.o)
- .debug_frame   0x00005e78       0x28 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_copysign.o)
+ .debug_frame   0x000054d8      0x190 bin/stabilizer.o
+ .debug_frame   0x00005668      0x190 bin/log.o
+ .debug_frame   0x000057f8       0x70 bin/worker.o
+ .debug_frame   0x00005868       0x20 bin/filter.o
+ .debug_frame   0x00005888       0x30 bin/cpuid.o
+ .debug_frame   0x000058b8       0x2c bin/cfassert.o
+ .debug_frame   0x000058e4       0x60 bin/configblock.o
+ .debug_frame   0x00005944       0xa8 bin/eprintf.o
+ .debug_frame   0x000059ec       0x70 bin/crc.o
+ .debug_frame   0x00005a5c       0x30 bin/fp16.o
+ .debug_frame   0x00005a8c       0x20 bin/abort.o
+ .debug_frame   0x00005aac       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_cos.o)
+ .debug_frame   0x00005adc       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_sin.o)
+ .debug_frame   0x00005b0c       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_asin.o)
+ .debug_frame   0x00005b40       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_atan2.o)
+ .debug_frame   0x00005b60       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_pow.o)
+ .debug_frame   0x00005b98       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_asin.o)
+ .debug_frame   0x00005bd0       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_atan2.o)
+ .debug_frame   0x00005c08       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_pow.o)
+ .debug_frame   0x00005c40       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_rem_pio2.o)
+ .debug_frame   0x00005c78       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-e_sqrt.o)
+ .debug_frame   0x00005cac       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_cos.o)
+ .debug_frame   0x00005ce4       0x3c /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_rem_pio2.o)
+ .debug_frame   0x00005d20       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-k_sin.o)
+ .debug_frame   0x00005d58       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_atan.o)
+ .debug_frame   0x00005d90       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_fabs.o)
+ .debug_frame   0x00005db0       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_finite.o)
+ .debug_frame   0x00005dd0       0x38 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_floor.o)
+ .debug_frame   0x00005e08       0x28 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_fpclassify.o)
+ .debug_frame   0x00005e30       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_matherr.o)
+ .debug_frame   0x00005e50       0x20 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_nan.o)
+ .debug_frame   0x00005e70       0x34 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_rint.o)
+ .debug_frame   0x00005ea4       0x30 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_scalbn.o)
+ .debug_frame   0x00005ed4       0x28 /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_copysign.o)
 
-.debug_str      0x00000000    0x5ae46
+.debug_str      0x00000000    0x5ae6a
  *(.debug_str)
  .debug_str     0x00000000    0x42b8a bin/list.o
                               0x42d4e (size before relaxing)
@@ -8886,34 +8892,34 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
                               0x42c86 (size before relaxing)
  .debug_str     0x00058e7b      0x14c bin/sensfusion6.o
                               0x42232 (size before relaxing)
- .debug_str     0x00058fc7      0x5ee bin/stabilizer.o
-                              0x45d60 (size before relaxing)
- .debug_str     0x000595b5      0x30a bin/log.o
+ .debug_str     0x00058fc7      0x612 bin/stabilizer.o
+                              0x45db2 (size before relaxing)
+ .debug_str     0x000595d9      0x30a bin/log.o
                               0x467c8 (size before relaxing)
- .debug_str     0x000598bf       0x4c bin/worker.o
+ .debug_str     0x000598e3       0x4c bin/worker.o
                               0x43ee8 (size before relaxing)
- .debug_str     0x0005990b       0x13 bin/filter.o
+ .debug_str     0x0005992f       0x13 bin/filter.o
                               0x3fe92 (size before relaxing)
- .debug_str     0x0005991e       0x3c bin/cpuid.o
+ .debug_str     0x00059942       0x3c bin/cpuid.o
                               0x3fe60 (size before relaxing)
- .debug_str     0x0005995a       0x1a bin/cfassert.o
+ .debug_str     0x0005997e       0x1a bin/cfassert.o
                               0x40395 (size before relaxing)
- .debug_str     0x00059974      0xe57 bin/configblock.o
+ .debug_str     0x00059998      0xe57 bin/configblock.o
                               0x41b22 (size before relaxing)
- .debug_str     0x0005a7cb      0x4c8 bin/eprintf.o
+ .debug_str     0x0005a7ef      0x4c8 bin/eprintf.o
                               0x40476 (size before relaxing)
- .debug_str     0x0005ac93      0x117 bin/crc.o
+ .debug_str     0x0005acb7      0x117 bin/crc.o
                               0x40020 (size before relaxing)
- .debug_str     0x0005adaa       0x29 bin/fp16.o
+ .debug_str     0x0005adce       0x29 bin/fp16.o
                               0x3fe7b (size before relaxing)
- .debug_str     0x0005add3       0x12 bin/debug.o
+ .debug_str     0x0005adf7       0x12 bin/debug.o
                               0x3fe36 (size before relaxing)
- .debug_str     0x0005ade5       0x18 bin/abort.o
+ .debug_str     0x0005ae09       0x18 bin/abort.o
                               0x3fe3c (size before relaxing)
- .debug_str     0x0005adfd       0x49 bin/version.o
+ .debug_str     0x0005ae21       0x49 bin/version.o
                               0x40771 (size before relaxing)
 
-.debug_loc      0x00000000     0xee5f
+.debug_loc      0x00000000     0xeedc
  *(.debug_loc)
  .debug_loc     0x00000000       0x71 bin/list.o
  .debug_loc     0x00000071      0xa1b bin/tasks.o
@@ -8963,15 +8969,15 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_loc     0x0000c321      0x16f bin/commander.o
  .debug_loc     0x0000c490      0x258 bin/controller.o
  .debug_loc     0x0000c6e8      0x6b9 bin/sensfusion6.o
- .debug_loc     0x0000cda1      0xbf9 bin/stabilizer.o
- .debug_loc     0x0000d99a      0x83f bin/log.o
- .debug_loc     0x0000e1d9       0x98 bin/worker.o
- .debug_loc     0x0000e271       0x92 bin/filter.o
- .debug_loc     0x0000e303       0x5a bin/cfassert.o
- .debug_loc     0x0000e35d       0x7e bin/configblock.o
- .debug_loc     0x0000e3db      0x62f bin/eprintf.o
- .debug_loc     0x0000ea0a      0x2be bin/crc.o
- .debug_loc     0x0000ecc8      0x197 bin/fp16.o
+ .debug_loc     0x0000cda1      0xc76 bin/stabilizer.o
+ .debug_loc     0x0000da17      0x83f bin/log.o
+ .debug_loc     0x0000e256       0x98 bin/worker.o
+ .debug_loc     0x0000e2ee       0x92 bin/filter.o
+ .debug_loc     0x0000e380       0x5a bin/cfassert.o
+ .debug_loc     0x0000e3da       0x7e bin/configblock.o
+ .debug_loc     0x0000e458      0x62f bin/eprintf.o
+ .debug_loc     0x0000ea87      0x2be bin/crc.o
+ .debug_loc     0x0000ed45      0x197 bin/fp16.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -8991,7 +8997,7 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000     0x2450
+.debug_ranges   0x00000000     0x2470
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x30 bin/list.o
  .debug_ranges  0x00000030      0x140 bin/tasks.o
@@ -9042,17 +9048,17 @@ LOAD /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-ea
  .debug_ranges  0x00001fc0       0x50 bin/commander.o
  .debug_ranges  0x00002010       0x38 bin/controller.o
  .debug_ranges  0x00002048       0x30 bin/sensfusion6.o
- .debug_ranges  0x00002078      0x170 bin/stabilizer.o
- .debug_ranges  0x000021e8      0x158 bin/log.o
- .debug_ranges  0x00002340       0x28 bin/worker.o
- .debug_ranges  0x00002368       0x10 bin/filter.o
- .debug_ranges  0x00002378       0x18 bin/cpuid.o
- .debug_ranges  0x00002390       0x10 bin/cfassert.o
- .debug_ranges  0x000023a0       0x30 bin/configblock.o
- .debug_ranges  0x000023d0       0x30 bin/eprintf.o
- .debug_ranges  0x00002400       0x28 bin/crc.o
- .debug_ranges  0x00002428       0x18 bin/fp16.o
- .debug_ranges  0x00002440       0x10 bin/abort.o
+ .debug_ranges  0x00002078      0x190 bin/stabilizer.o
+ .debug_ranges  0x00002208      0x158 bin/log.o
+ .debug_ranges  0x00002360       0x28 bin/worker.o
+ .debug_ranges  0x00002388       0x10 bin/filter.o
+ .debug_ranges  0x00002398       0x18 bin/cpuid.o
+ .debug_ranges  0x000023b0       0x10 bin/cfassert.o
+ .debug_ranges  0x000023c0       0x30 bin/configblock.o
+ .debug_ranges  0x000023f0       0x30 bin/eprintf.o
+ .debug_ranges  0x00002420       0x28 bin/crc.o
+ .debug_ranges  0x00002448       0x18 bin/fp16.o
+ .debug_ranges  0x00002460       0x10 bin/abort.o
 
 .debug_macro    0x00000000    0x15285
  *(.debug_macro)
@@ -10624,8 +10630,11 @@ integralFBz                                       bin/sensfusion6.o
 ledInit                                           bin/led.o
                                                   bin/system.o
                                                   bin/ledseq.o
+ledOff                                            bin/stabilizer.o
+ledOn                                             bin/stabilizer.o
 ledSet                                            bin/led.o
                                                   bin/cfassert.o
+                                                  bin/stabilizer.o
                                                   bin/system.o
                                                   bin/ledseq.o
                                                   bin/tasks.o
@@ -10660,6 +10669,7 @@ main                                              bin/main.o
 matherr                                           /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-s_matherr.o)
                                                   /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_pow.o)
                                                   /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libm.a(lib_a-w_asin.o)
+mattTest                                          bin/stabilizer.o
 memchr                                            /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-memchr-stub.o)
                                                   /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-svfiprintf.o)
                                                   /am/st-james/home1/stevenmatt3/_ENGR489 Crazyflie/GNU Tools/gcc-arm-none-eabi-4_8-2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m/libc.a(lib_a-svfprintf.o)
@@ -10687,6 +10697,7 @@ motorsSetRatio                                    bin/motors.o
 motorsTest                                        bin/motors.o
                                                   bin/stabilizer.o
 motorsTestTask                                    bin/motors.o
+                                                  bin/stabilizer.o
 mpu6050EvaluateSelfTest                           bin/mpu6050.o
 mpu6050GetAccelFIFOEnabled                        bin/mpu6050.o
 mpu6050GetAccelXSelfTest                          bin/mpu6050.o
@@ -11089,6 +11100,7 @@ pow                                               /am/st-james/home1/stevenmatt3
                                                   bin/ms5611.o
 power                                             bin/eprintf.o
 printHardFault                                    bin/nvic.o
+printLed                                          bin/stabilizer.o
 pvPortMalloc                                      bin/heap_4.o
                                                   bin/timers.o
                                                   bin/queue.o

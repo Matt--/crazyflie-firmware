@@ -95,6 +95,7 @@ void stabilizerInit (void){
 }
 
 void x1x_stabilizerTask (void){
+//motorsTestTask(0); //##############################
   real a1 = 0.0;
   real a2 = 0.0;
   real a3 = 0.0;
@@ -196,10 +197,14 @@ void x1x_stabilizerTask (void){
   cf_lib_LHS_Equals_Neg_RHS ( a44, a35 );
   cf_lib_controllerCorrectRatePID ( a5, a38, a41, a44 );
   cf_lib_controllerGetActuatorOutput ( a59, a62, a65 );
-  cf_lib_commanderGetThrust ( a56 );
-  int a130 = *a56;
+  cf_lib_commanderGetThrust ( a56 ); // a56 starts = 0. no other inputs. Commander is pilot's desired input.
+
+//mattTest(*a56);
+
+  int a130 = *a56; // thrust
   int a131 = 0;
-  if ( a130 <= a131 ) { goto label23; };
+//mattTest(a0);
+  if ( a130 <= a131 ) { goto label23; }; // if true, label23 which sets motor power to 0
   int a133 = *a56;
   int a135 = *a59;
   int a137 = *a62;
@@ -233,8 +238,11 @@ void x1x_distributePower ( int a0, int a1, int a2, int a3 ){
   int a29 = a0 + a1;
   int a31 = a29 - a3;
   int a26 = x1x_limitThrust ( a31 );
-  int a32 = 0;
-  cf_lib_motorsSetRatio ( a32, a5 );
+
+// is getting here, with power = 0.
+
+  int a32 = 0; // motor
+  cf_lib_motorsSetRatio ( a32, a5 ); // params motor, power
   int a34 = 1;
   cf_lib_motorsSetRatio ( a34, a12 );
   int a36 = 2;

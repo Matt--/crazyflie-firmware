@@ -40,6 +40,39 @@ static bool isStabilizerInit(){
   return temp;
 }
 
+void mattTest(int i){
+  if(i == 0){
+    motorsTestTask(0); //##############################
+  }
+}
+
+void ledOn(void);
+void printLed(){
+  int i, j;
+  int swap = 1;
+  for(i = 0; i < 20; i++){
+    ledSetRed(swap); ledSetGreen(swap);
+    j = 0;
+    while(j < 100000000){
+      j++;
+    }
+    swap = (swap == 1 ? 0 : 1);
+  }
+  ledOn();
+}
+
+void ledOn(){
+  // ledSet(led, boolean) red = 0, green = 1
+  ledSet(0, 1); ledSet(1, 1);
+//  GPIO_SetBits(LED_GPIO_PORT, LED_GPIO_GREEN);
+//  GPIO_SetBits(LED_GPIO_PORT, LED_GPIO_RED);
+}
+
+void ledOff(){
+  ledSetRed(0); ledSetGreen(0);
+}
+
+
 
 /**** NOTES - IMPORTANT ****
  * naming pattern; cf_lib_ plus original name
@@ -117,6 +150,7 @@ static int cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
 
 /** commanderGetThrust **/
 static uint16_t thrust;
+// needed to convert int to uint16_t
 static void cf_lib_commanderGetThrust(int* _thrust){
   thrust = (uint16_t) *_thrust;
 
@@ -281,8 +315,11 @@ static float cf_lib_getEulerPitchActual(){ return eulerPitchActual;}
 static float cf_lib_getEulerYawActual()  { return eulerYawActual;}
 */
 
+
 /* void motorsSetRatio(int id, uint16_t ratio); */
 static void cf_lib_motorsSetRatio(int motor, int power){
+
 	motorsSetRatio(motor, (uint16_t) power);
 }
+
 
