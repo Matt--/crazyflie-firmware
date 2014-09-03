@@ -26,7 +26,7 @@ if os.path.isdir(".git"):
     version['irevision0'] = "0x" + revision[0:8]
     version['irevision1'] = "0x" + revision[8:12]
 
-    identify = subprocess.check_output(["git", "describe", "--abbrev=12", "--tags", "HEAD"])
+    identify = subprocess.check_output(["git", "describe", "--abbrev=12", "--tags", "HEAD"]).strip()
     identify = identify.split('-')
 
     if len(identify) > 2:

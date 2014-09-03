@@ -4,6 +4,10 @@
 //#include <stdbool.h>
 //#include <math.h>
 
+
+#ifndef MATT_COMPILER_H
+#define MATT_COMPILER_H
+
 #define NULL_TYPE 0
 #define INT_TYPE 1
 #define CHAR_TYPE 2
@@ -56,4 +60,4 @@ void error(int, char*);
 //
 //Any toStr(Any);
 
-
+#endif

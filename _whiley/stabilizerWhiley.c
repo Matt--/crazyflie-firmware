@@ -8,12 +8,27 @@
 #include "mattCompiler.h"
 #include "mattCompiler_library.c"
 #include "cf_Lib.c"
+#include "stm32f10x_conf.h"
+#include <math.h>
+#include "FreeRTOS.h"
+#include "task.h"
+#include "pid.h"
+#include "led.h"
+#include "motors.h"
+#include "task.h"
+#include "system.h"
+#include "stabilizer.h"
+#include "commander.h"
+#include "controller.h"
+#include "sensfusion6.h"
+#include "imu.h"
+#include "log.h"
 
 bool stabilizerTest ( void );
 void stabilizerInit ( void );
 void x1x_stabilizerTask ( void );
-void x1x_distributePower ( int , int , int , int  );
-int x1x_limitThrust ( int  );
+void x1x_distributePower ( int, int, int, int );
+int x1x_limitThrust ( int );
 
 bool stabilizerTest (void){
   bool a1 = true;
@@ -217,7 +232,7 @@ void x1x_stabilizerTask (void){
   label21: ;
   goto loop_start_label18;
   
-  return; //stuff
+  return;
 }
 
 void x1x_distributePower ( int a0, int a1, int a2, int a3 ){

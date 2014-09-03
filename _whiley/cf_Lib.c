@@ -25,8 +25,18 @@ typedef struct {
 /* declared in FreeRTOS include/projdefs.h
 typedef void (*pdTASK_CODE)( void * ); */
 
+
+#ifndef CF_LIB_
+#define CF_LIB_
+
 typedef void(*func)();
 
+// motor test, used for print line type debugging. Yes, painfull...
+void mattTest(int i){
+  if(i == 0){
+    motorsTestTask(0); //##############################
+  }
+}
 
 
 /* == Initialized? ==
@@ -39,40 +49,6 @@ static bool isStabilizerInit(){
   stabilizerIsInit = true;
   return temp;
 }
-
-void mattTest(int i){
-  if(i == 0){
-    motorsTestTask(0); //##############################
-  }
-}
-
-void ledOn(void);
-void printLed(){
-  int i, j;
-  int swap = 1;
-  for(i = 0; i < 20; i++){
-    ledSetRed(swap); ledSetGreen(swap);
-    j = 0;
-    while(j < 100000000){
-      j++;
-    }
-    swap = (swap == 1 ? 0 : 1);
-  }
-  ledOn();
-}
-
-void ledOn(){
-  // ledSet(led, boolean) red = 0, green = 1
-  ledSet(0, 1); ledSet(1, 1);
-//  GPIO_SetBits(LED_GPIO_PORT, LED_GPIO_GREEN);
-//  GPIO_SetBits(LED_GPIO_PORT, LED_GPIO_RED);
-}
-
-void ledOff(){
-  ledSetRed(0); ledSetGreen(0);
-}
-
-
 
 /**** NOTES - IMPORTANT ****
  * naming pattern; cf_lib_ plus original name
@@ -159,22 +135,6 @@ static void cf_lib_commanderGetThrust(int* _thrust){
   *_thrust = (int) thrust;
 }
 
-/** commanderGetRPY **/
-/*static float eulerRollDesired;
-static float eulerPitchDesired;
-static float eulerYawDesired;
-static void cf_lib_commanderGetRPY(float _eulerRollDesired, float _eulerPitchDesired, float _eulerYawDesired){
-  eulerRollDesired  = _eulerRollDesired;
-  eulerPitchDesired = _eulerPitchDesired;
-  eulerYawDesired   = _eulerYawDesired;
-  commanderGetRPY(&eulerRollDesired, &eulerPitchDesired, &eulerYawDesired);
-}*/
-/* gcc complains, not used
-static Any cf_lib_getEulerRollDesired() { return Real(eulerRollDesired);}
-static Any cf_lib_getEulerPitchDesired(){ return Real(eulerPitchDesired);}
-*/
-//static float cf_lib_getEulerYawDesired()  { return eulerYawDesired;}
-
 /** commanderGetRPYType **/
 /* declared in FreeRTOS commander.h
 typedef enum
@@ -208,33 +168,8 @@ static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* 
   _yawType = getRPYString(yawType);
 }
 
-/** controllerCorrectAttitudePID **/
-
-/*static float rollRateDesired = 0;
-static float pitchRateDesired = 0;
-static float yawRateDesired = 0;
-static void cf_lib_controllerCorrectAttitudePID(
-       float eulerRollActual,  float eulerPitchActual,  float eulerYawActual,
-       float eulerRollDesired, float eulerPitchDesired, float eulerYawDesired,
-       float _rollRateDesired,  float _pitchRateDesired,  float _yawRateDesired){
-
-  rollRateDesired   = _rollRateDesired;
-  pitchRateDesired  = _pitchRateDesired;
-  yawRateDesired    = _yawRateDesired;
-
-  controllerCorrectAttitudePID(
-       eulerRollActual,  eulerPitchActual,  eulerYawActual,
-       eulerRollDesired, eulerPitchDesired, eulerYawDesired,
-       &rollRateDesired, &pitchRateDesired, &yawRateDesired);
-}
-static float cf_lib_getRollRateDesired() { return rollRateDesired;}
-static float cf_lib_getPitchRateDesired(){ return pitchRateDesired;}
-*/
 
 /* controllerGetActuatorOutput(&actuatorRoll, &actuatorPitch, &actuatorYaw) */
-//static short actuatorRoll;
-//static short actuatorPitch;
-//static short actuatorYaw;
 int16_t actuatorRoll;
 int16_t actuatorPitch;
 int16_t actuatorYaw;
@@ -298,28 +233,44 @@ static void cf_lib_sensfusion6UpdateQ(float gyro[], float acc[], float dt){
 	sensfusion6UpdateQ( gyro[0], gyro[1], gyro[2], acc[0], acc[1], acc[2], dt);
 }
 
-
-
-/*static float eulerRollActual;
-static float eulerPitchActual;
-static float eulerYawActual;
-
-static void cf_lib_sensfusion6GetEulerRPY(float _eulerRollActual, float _eulerPitchActual, float _eulerYawActual){
-  eulerRollActual  = _eulerRollActual;
-  eulerPitchActual = _eulerPitchActual;
-  eulerYawActual   = _eulerYawActual;
-  sensfusion6GetEulerRPY(&eulerRollActual, &eulerPitchActual, &eulerYawActual);
-}
-static float cf_lib_getEulerRollActual() { return eulerRollActual;}
-static float cf_lib_getEulerPitchActual(){ return eulerPitchActual;}
-static float cf_lib_getEulerYawActual()  { return eulerYawActual;}
-*/
-
-
 /* void motorsSetRatio(int id, uint16_t ratio); */
 static void cf_lib_motorsSetRatio(int motor, int power){
-
 	motorsSetRatio(motor, (uint16_t) power);
 }
 
+//===========================================================================================
+//========== pid.c ===========
+//============================
+
+
+//  void pidInit(PidObject* pid, const float desired, const float kp,
+//             const float ki, const float kd, const float dt);
+//void PidObject pidInit( PidObject pid, real a1, real a2, real a3, real a4, real a5){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif
 

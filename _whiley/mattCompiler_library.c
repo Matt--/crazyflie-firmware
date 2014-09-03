@@ -2,6 +2,8 @@
  * Library constructors & functions
  */
 
+#ifndef MATT_COMPILER_C
+#define MATT_COMPILER_C
 
 Any Str(char* s)
 {
@@ -80,4 +82,4 @@ void whileyPrecision(char * str){
 }
 #endif
 
-
+#endif //== MATT_COMPILER_H ==//
