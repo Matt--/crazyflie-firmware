@@ -15,8 +15,8 @@
 #include "system.h"
 #include "stabilizer.h"
 #include "commander.h"
-#include "controller.h"
 #include "sensfusion6.h"
+#include "param.h"
 #include "imu.h"
 #include "log.h"
 
@@ -52,7 +52,7 @@ void pidSetKd ( PidObject*, real );
 void pidSetDt ( PidObject*, real );
 
 void pidInit ( PidObject* a0, real a1, real a2, real a3, real a4, real a5 ){
-  real a6 = 1.0;
+  real a6 = 0.0;
   a0->error = a6;
   real a7 = 0.0;
   a0->prevError = a7;

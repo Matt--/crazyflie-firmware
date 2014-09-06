@@ -67,8 +67,8 @@ PROJ_OBJ += crtp.o ledseq.o freeRTOSdebug.o imu.o pm.o radiolink.o eskylink.o
 PROJ_OBJ += usec_time.o
 
 # Modules
-PROJ_OBJ += system.o comm.o console.o pid.o crtpservice.o param.o
-PROJ_OBJ += commander.o controller.o sensfusion6.o stabilizer.o
+PROJ_OBJ += system.o comm.o console.o crtpservice.o param.o
+PROJ_OBJ += commander.o pid.o controller.o stabilizer.o sensfusion6.o
 PROJ_OBJ += log.o worker.o
 
 # Utilities

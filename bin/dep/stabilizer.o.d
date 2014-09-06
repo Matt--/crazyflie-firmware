@@ -42,10 +42,9 @@ stabilizer.o: modules/src/stabilizer.c config/stm32f10x_conf.h \
  drivers/interface/motors.h config/config.h drivers/interface/nrf24l01.h \
  drivers/interface/nRF24L01reg.h drivers/interface/led.h \
  modules/interface/system.h modules/interface/stabilizer.h \
- modules/interface/commander.h modules/interface/controller.h \
  modules/interface/commander.h modules/interface/sensfusion6.h \
- hal/interface/imu.h utils/interface/filter.h hal/interface/imu_types.h \
- modules/interface/log.h _whiley/mattCompiler.h \
+ modules/interface/param.h hal/interface/imu.h utils/interface/filter.h \
+ hal/interface/imu_types.h modules/interface/log.h _whiley/mattCompiler.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/arm-none-eabi/include/string.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/lib/gcc/arm-none-eabi/4.8.3/include-fixed/sys/cdefs.h \
  /am/st-james/home1/stevenmatt3/_ENGR489\ Crazyflie/GNU\ Tools/gcc-arm-none-eabi-4_8-2013q4/arm-none-eabi/include/sys/string.h \
@@ -162,11 +161,9 @@ modules/interface/stabilizer.h:
 
 modules/interface/commander.h:
 
-modules/interface/controller.h:
-
-modules/interface/commander.h:
-
 modules/interface/sensfusion6.h:
+
+modules/interface/param.h:
 
 hal/interface/imu.h:
 

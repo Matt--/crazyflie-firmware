@@ -31,6 +31,10 @@ typedef void (*pdTASK_CODE)( void * ); */
 
 typedef void(*func)();
 
+
+
+
+
 // motor test, used for print line type debugging. Yes, painfull...
 void mattTest(int i){
   if(i == 0){
@@ -44,9 +48,17 @@ void mattTest(int i){
  */
 static bool stabilizerIsInit = false;
 
-static bool isStabilizerInit(){
+bool isStabilizerInit(){
   bool temp = stabilizerIsInit;
   stabilizerIsInit = true;
+  return temp;
+}
+
+static bool controllerIsInit = false;
+bool getControllerIsInit(){ return controllerIsInit; }
+bool isControllerInit(){
+  bool temp = controllerIsInit;
+  controllerIsInit = true;
   return temp;
 }
 
@@ -64,14 +76,14 @@ static void cf_lib_LHS_Equals_Neg_RHS( float* yawRateDesired, float* eulerYawDes
  */
 
 /* portTickType xTaskGetTickCount( void ) PRIVILEGED_FUNCTION; */
-static int cf_lib_xTaskGetTickCount(){
+int cf_lib_xTaskGetTickCount(){
   return (int) xTaskGetTickCount();
 }
 
 /* xTaskCreate(&stabilizerTask, *//*(const signed char * const)*//* "STABILIZER", 200, null, *//*Piority*//*2, null)
    portmacro.h #define portBASE_TYPE	long
 */
-static void cf_lib_xTaskCreate(func stabilizerTask, char* stabilizerName, int depth, int n1, int priority, int n2){
+void cf_lib_xTaskCreate(func stabilizerTask, char* stabilizerName, int depth, int n1, int priority, int n2){
 /*  pdTASK_CODE pvTaskCode = (pdTASK_CODE) stabilizerTask; 
   const signed char * const pcName = (signed char*) stabilizerName; 
   unsigned short usStackDepth = depth; 
@@ -95,7 +107,7 @@ static void cf_lib_xTaskCreate(func stabilizerTask, char* stabilizerName, int de
 */
 static int g_xTask;
 static pdTASK_HOOK_CODE g_taskStabilizerIdNmr;
-static void cf_lib_vTaskSetApplicationTaskTag(int xTask, int taskStabilizerIdNmr){
+void cf_lib_vTaskSetApplicationTaskTag(int xTask, int taskStabilizerIdNmr){
   g_xTask = xTask;
   g_taskStabilizerIdNmr = (pdTASK_HOOK_CODE) taskStabilizerIdNmr;
   vTaskSetApplicationTaskTag(&g_xTask, g_taskStabilizerIdNmr);
@@ -112,7 +124,7 @@ static void cf_lib_vTaskSetApplicationTaskTag(int xTask, int taskStabilizerIdNmr
 //	#define portMAX_DELAY ( portTickType ) 0xffffffff
 //#endif
 static portTickType lastWakeTime;
-static int cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
+int cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
   lastWakeTime = (portTickType) _lastWakeTime;
 
   vTaskDelayUntil( &lastWakeTime, (unsigned int) xTimeIncrement );
@@ -127,7 +139,7 @@ static int cf_lib_vTaskDelayUntil( int _lastWakeTime, int xTimeIncrement ){
 /** commanderGetThrust **/
 static uint16_t thrust;
 // needed to convert int to uint16_t
-static void cf_lib_commanderGetThrust(int* _thrust){
+void cf_lib_commanderGetThrust(int* _thrust){
   thrust = (uint16_t) *_thrust;
 
   commanderGetThrust(&thrust);
@@ -156,7 +168,7 @@ char* getRPYString(int x){
   return "ERROR";
 }
 // needed to translate between Whiley string and Crazyflie C enums
-static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* _yawType){
+void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* _yawType){
   rollType  = getRPYEnum(_rollType);
   pitchType = getRPYEnum(_pitchType);
   yawType   = getRPYEnum(_yawType);
@@ -170,11 +182,11 @@ static void cf_lib_commanderGetRPYType(char* _rollType, char* _pitchType, char* 
 
 
 /* controllerGetActuatorOutput(&actuatorRoll, &actuatorPitch, &actuatorYaw) */
-int16_t actuatorRoll;
+/*int16_t actuatorRoll;
 int16_t actuatorPitch;
 int16_t actuatorYaw;
 // needed to cast from Whiley unbounded ints to Crazyflie C shorts, alias int16_t
-static void cf_lib_controllerGetActuatorOutput(int* _actuatorRoll, int* _actuatorPitch, int* _actuatorYaw){
+void cf_lib_controllerGetActuatorOutput(int* _actuatorRoll, int* _actuatorPitch, int* _actuatorYaw){
   actuatorRoll  = (int16_t) *_actuatorRoll;
   actuatorPitch = (int16_t) *_actuatorPitch;
   actuatorYaw   = (int16_t) *_actuatorYaw;
@@ -184,17 +196,17 @@ static void cf_lib_controllerGetActuatorOutput(int* _actuatorRoll, int* _actuato
   *_actuatorRoll  = (int) actuatorRoll;
   *_actuatorPitch = (int) actuatorPitch;
   *_actuatorYaw   = (int) actuatorYaw;
-}
+}*/
 
 /* void controllerCorrectRatePID(
        float rollRateActual, float pitchRateActual, float yawRateActual,
        float rollRateDesired, float pitchRateDesired, float yawRateDesired); */
-static void cf_lib_controllerCorrectRatePID(
+/*void cf_lib_controllerCorrectRatePID(
 		float gyro[], float* rollRateDesired, float* pitchRateDesired, float* yawRateDesired){
 	controllerCorrectRatePID(
 	       gyro[0], -(gyro[1]), gyro[2],
 	       *rollRateDesired, *pitchRateDesired, *yawRateDesired);
-}
+}*/
 
 /* ========================================================
  * == i/o ==
@@ -216,7 +228,7 @@ void axis3f_to_array(Axis3f axis, float* array){
 	array[1] = axis.y;
 	array[2] = axis.z;
 }
-static void cf_lib_imu9Read(float* _gyro, float* _acc, float* _mag){
+void cf_lib_imu9Read(float* _gyro, float* _acc, float* _mag){
   array_to_axis3f(_gyro, gyro);
   array_to_axis3f(_acc,  acc);
   array_to_axis3f(_mag,  mag);

@@ -5,6 +5,19 @@
 #ifndef MATT_COMPILER_C
 #define MATT_COMPILER_C
 
+// Math.floor function
+//int lib_floor(double x){
+//	return (int) floor(x);
+//}
+// Math.abs function
+//int lib_abs(int x){
+//	return x < 0 ? -(x) : x;
+//}
+//float lib_abs(float x){
+//	return x < 0 ? -(x) : x;
+//}
+
+
 Any Str(char* s)
 {
 #if(LIBRARY_TESTING)

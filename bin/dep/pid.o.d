@@ -42,10 +42,9 @@ pid.o: modules/src/pid.c config/stm32f10x_conf.h \
  drivers/interface/motors.h config/config.h drivers/interface/nrf24l01.h \
  drivers/interface/nRF24L01reg.h drivers/interface/led.h \
  modules/interface/system.h modules/interface/stabilizer.h \
- modules/interface/commander.h modules/interface/controller.h \
  modules/interface/commander.h modules/interface/sensfusion6.h \
- hal/interface/imu.h utils/interface/filter.h hal/interface/imu_types.h \
- modules/interface/log.h
+ modules/interface/param.h hal/interface/imu.h utils/interface/filter.h \
+ hal/interface/imu_types.h modules/interface/log.h
 
 config/stm32f10x_conf.h:
 
@@ -155,11 +154,9 @@ modules/interface/stabilizer.h:
 
 modules/interface/commander.h:
 
-modules/interface/controller.h:
-
-modules/interface/commander.h:
-
 modules/interface/sensfusion6.h:
+
+modules/interface/param.h:
 
 hal/interface/imu.h:
 

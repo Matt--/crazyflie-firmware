@@ -15,19 +15,43 @@
 #include "system.h"
 #include "stabilizer.h"
 #include "commander.h"
-#include "controller.h"
 #include "sensfusion6.h"
+#include "param.h"
 #include "imu.h"
 #include "log.h"
 #include "_whiley/mattCompiler.h"
 #include "_whiley/mattCompiler_library.c"
 #include "_whiley/cf_Lib.c"
 
+typedef struct {
+    real deriv; 
+    real desired; 
+    real dt; 
+    real error; 
+    real iLimit; 
+    real iLimitLow; 
+    real integ; 
+    real kd; 
+    real ki; 
+    real kp; 
+    real outD; 
+    real outI; 
+    real outP; 
+    real prevError; 
+    } PidObject;
+
 bool stabilizerTest ( void );
 void stabilizerInit ( void );
-void x1x_stabilizerTask ( void );
-void x1x_distributePower ( int, int, int, int );
-int x1x_limitThrust ( int );
+void stabilizerTask ( void );
+void distributePower ( int, int, int, int );
+int limitThrust ( int );
+
+void controllerInit ( PidObject** ); 
+bool controllerTest ( void ); 
+void controllerCorrectRatePID ( real*, real, real, real, int*, int*, int*, PidObject*, PidObject*, PidObject* ); 
+void controllerCorrectAttitudePID ( real, real, real, real, real, real, real*, real*, real*, PidObject*, PidObject*, PidObject* ); 
+void controllerResetAllPID ( PidObject** ); 
+
 
 bool stabilizerTest (void){
   bool a1 = true;
@@ -97,8 +121,7 @@ void stabilizerInit (void){
   motorsInit (  );
   imu6Init (  );
   sensfusion6Init (  );
-  controllerInit (  );
-  void (*a2)() = &x1x_stabilizerTask;
+  void (*a2)() = &stabilizerTask;
   char * a3 = "STABILIZER";
   int a4 = 200;
   int a5 = 0;
@@ -108,7 +131,7 @@ void stabilizerInit (void){
   return;
 }
 
-void x1x_stabilizerTask (void){
+void stabilizerTask (void){
   real a1 = 0.0;
   real a2 = 0.0;
   real a3 = 0.0;
@@ -166,87 +189,195 @@ void x1x_stabilizerTask (void){
   int a64 = 0;
   int *a65 = &a64;
   int a67 = 0;
-  int a69 = 0;
-  int a70 = 3;
-  cf_lib_vTaskSetApplicationTaskTag ( a69, a70 );
+  real a70 = 0.0;
+  real a71 = 0.0;
+  real a72 = 0.0;
+  real a73 = 0.0;
+  real a74 = 0.0;
+  real a75 = 0.0;
+  real a76 = 0.0;
+  real a77 = 0.0;
+  real a78 = 0.0;
+  real a79 = 0.0;
+  real a80 = 0.0;
+  real a81 = 0.0;
+  real a82 = 0.0;
+  real a83 = 0.0;
+  PidObject a84 = { a70, a71, a72, a73, a74, a75, a76, a77, a78, a79, a80, a81, a82, a83 };
+  PidObject *a85 = &a84;
+  real a87 = 0.0;
+  real a88 = 0.0;
+  real a89 = 0.0;
+  real a90 = 0.0;
+  real a91 = 0.0;
+  real a92 = 0.0;
+  real a93 = 0.0;
+  real a94 = 0.0;
+  real a95 = 0.0;
+  real a96 = 0.0;
+  real a97 = 0.0;
+  real a98 = 0.0;
+  real a99 = 0.0;
+  real a100 = 0.0;
+  PidObject a101 = { a87, a88, a89, a90, a91, a92, a93, a94, a95, a96, a97, a98, a99, a100 };
+  PidObject *a102 = &a101;
+  real a104 = 0.0;
+  real a105 = 0.0;
+  real a106 = 0.0;
+  real a107 = 0.0;
+  real a108 = 0.0;
+  real a109 = 0.0;
+  real a110 = 0.0;
+  real a111 = 0.0;
+  real a112 = 0.0;
+  real a113 = 0.0;
+  real a114 = 0.0;
+  real a115 = 0.0;
+  real a116 = 0.0;
+  real a117 = 0.0;
+  PidObject a118 = { a104, a105, a106, a107, a108, a109, a110, a111, a112, a113, a114, a115, a116, a117 };
+  PidObject *a119 = &a118;
+  real a121 = 0.0;
+  real a122 = 0.0;
+  real a123 = 0.0;
+  real a124 = 0.0;
+  real a125 = 0.0;
+  real a126 = 0.0;
+  real a127 = 0.0;
+  real a128 = 0.0;
+  real a129 = 0.0;
+  real a130 = 0.0;
+  real a131 = 0.0;
+  real a132 = 0.0;
+  real a133 = 0.0;
+  real a134 = 0.0;
+  PidObject a135 = { a121, a122, a123, a124, a125, a126, a127, a128, a129, a130, a131, a132, a133, a134 };
+  PidObject *a136 = &a135;
+  real a138 = 0.0;
+  real a139 = 0.0;
+  real a140 = 0.0;
+  real a141 = 0.0;
+  real a142 = 0.0;
+  real a143 = 0.0;
+  real a144 = 0.0;
+  real a145 = 0.0;
+  real a146 = 0.0;
+  real a147 = 0.0;
+  real a148 = 0.0;
+  real a149 = 0.0;
+  real a150 = 0.0;
+  real a151 = 0.0;
+  PidObject a152 = { a138, a139, a140, a141, a142, a143, a144, a145, a146, a147, a148, a149, a150, a151 };
+  PidObject *a153 = &a152;
+  real a155 = 0.0;
+  real a156 = 0.0;
+  real a157 = 0.0;
+  real a158 = 0.0;
+  real a159 = 0.0;
+  real a160 = 0.0;
+  real a161 = 0.0;
+  real a162 = 0.0;
+  real a163 = 0.0;
+  real a164 = 0.0;
+  real a165 = 0.0;
+  real a166 = 0.0;
+  real a167 = 0.0;
+  real a168 = 0.0;
+  PidObject a169 = { a155, a156, a157, a158, a159, a160, a161, a162, a163, a164, a165, a166, a167, a168 };
+  PidObject *a170 = &a169;
+  PidObject *a178[6];
+  a178[0] = a85;
+  a178[1] = a102;
+  a178[2] = a119;
+  a178[3] = a136;
+  a178[4] = a153;
+  a178[5] = a170;
+  controllerInit ( a178 );
+  int a180 = 0;
+  int a181 = 3;
+  cf_lib_vTaskSetApplicationTaskTag ( a180, a181 );
   systemWaitStart (  );
-  int a71 = cf_lib_xTaskGetTickCount (  );
+  int a182 = cf_lib_xTaskGetTickCount (  );
   loop_start_label18: ;
   goto label19;
   label19: ;
-  int a74 = 2;
-  int a72 = cf_lib_vTaskDelayUntil ( a71, a74 );
-  a71 = a72;
+  int a185 = 2;
+  int a183 = cf_lib_vTaskDelayUntil ( a182, a185 );
+  a182 = a183;
   cf_lib_imu9Read ( a5, a11, a17 );
-  bool a78 = imu6IsCalibrated (  );
-  bool a79 = true;
-  if ( a78 == a79 ) { goto label20; };
+  bool a189 = imu6IsCalibrated (  );
+  bool a190 = true;
+  if ( a189 == a190 ) { goto label20; };
   goto label21;
   label20: ;
   commanderGetRPY ( a29, a32, a35 );
   cf_lib_commanderGetRPYType ( a47, a50, a53 );
-  int a87 = 1;
-  int a88 = a67 + a87;
-  a67 = a88;
-  int a90 = 2;
-  if ( a88 < a90 ) { goto label22; };
-  real a92 = 1.0;
-  real a93 = 500.0;
-  real a94 = 2.0;
-  real a95 = a93 / a94;
-  real a96 = a92 / a95;
-  cf_lib_sensfusion6UpdateQ ( a5, a11, a96 );
+  int a198 = 1;
+  int a199 = a67 + a198;
+  a67 = a199;
+  int a201 = 2;
+  if ( a199 < a201 ) { goto label22; };
+  real a203 = 1.0;
+  real a204 = 500.0;
+  real a205 = 2.0;
+  real a206 = a204 / a205;
+  real a207 = a203 / a206;
+  cf_lib_sensfusion6UpdateQ ( a5, a11, a207 );
   sensfusion6GetEulerRPY ( a20, a23, a26 );
-  real a104 = *a20;
-  real a106 = *a23;
-  real a108 = *a26;
-  real a110 = *a29;
-  real a112 = *a32;
-  real a114 = *a35;
-  controllerCorrectAttitudePID ( a104, a106, a108, a110, a112, a114, a38, a41, a44 );
-  int a118 = 0;
-  a67 = a118;
+  real a215 = *a20;
+  real a217 = *a23;
+  real a219 = *a26;
+  real a221 = *a29;
+  real a223 = *a32;
+  real a225 = *a35;
+  real a226 = -a225;
+  controllerCorrectAttitudePID ( a215, a217, a219, a221, a223, a226, a38, a41, a44, a136, a153, a170 );
+  int a233 = 0;
+  a67 = a233;
   label22: ;
   cf_lib_LHS_Equals_Neg_RHS ( a44, a35 );
-  cf_lib_controllerCorrectRatePID ( a5, a38, a41, a44 );
-  cf_lib_controllerGetActuatorOutput ( a59, a62, a65 );
+  real * a237 = a5;
+  real a239 = *a38;
+  real a241 = *a41;
+  real a243 = *a44;
+  controllerCorrectRatePID ( a237, a239, a241, a243, a59, a62, a65, a85, a102, a119 );
   cf_lib_commanderGetThrust ( a56 );
-  int a130 = *a56;
-  int a131 = 0;
-  if ( a130 <= a131 ) { goto label23; };
-  int a133 = *a56;
-  int a135 = *a59;
-  int a137 = *a62;
-  int a139 = *a65;
-  int a140 = -a139;
-  x1x_distributePower ( a133, a135, a137, a140 );
+  int a252 = *a56;
+  int a253 = 0;
+  if ( a252 <= a253 ) { goto label23; };
+  int a255 = *a56;
+  int a257 = *a59;
+  int a259 = *a62;
+  int a261 = *a65;
+  int a262 = -a261;
+  distributePower ( a255, a257, a259, a262 );
   goto label21;
   label23: ;
-  int a141 = 0;
-  int a142 = 0;
-  int a143 = 0;
-  int a144 = 0;
-  x1x_distributePower ( a141, a142, a143, a144 );
-  controllerResetAllPID (  );
+  int a263 = 0;
+  int a264 = 0;
+  int a265 = 0;
+  int a266 = 0;
+  distributePower ( a263, a264, a265, a266 );
+  controllerResetAllPID ( a178 );
   label21: ;
   goto loop_start_label18;
   
   return;
 }
 
-void x1x_distributePower ( int a0, int a1, int a2, int a3 ){
+void distributePower ( int a0, int a1, int a2, int a3 ){
   int a8 = a0 + a2;
   int a10 = a8 + a3;
-  int a5 = x1x_limitThrust ( a10 );
+  int a5 = limitThrust ( a10 );
   int a15 = a0 - a1;
   int a17 = a15 - a3;
-  int a12 = x1x_limitThrust ( a17 );
+  int a12 = limitThrust ( a17 );
   int a22 = a0 - a2;
   int a24 = a22 + a3;
-  int a19 = x1x_limitThrust ( a24 );
+  int a19 = limitThrust ( a24 );
   int a29 = a0 + a1;
   int a31 = a29 - a3;
-  int a26 = x1x_limitThrust ( a31 );
+  int a26 = limitThrust ( a31 );
   int a32 = 0;
   cf_lib_motorsSetRatio ( a32, a5 );
   int a34 = 1;
@@ -258,7 +389,7 @@ void x1x_distributePower ( int a0, int a1, int a2, int a3 ){
   return;
 }
 
-int x1x_limitThrust ( int a0 ){
+int limitThrust ( int a0 ){
   int a4 = 65535;
   if ( a0 <= a4 ) { goto label24; };
   a0 = a4;
